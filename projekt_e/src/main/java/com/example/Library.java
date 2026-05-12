@@ -2,12 +2,12 @@ package com.example;
 //Detta är föräldrar klassen där barnklassen ärver från
 public class Library {
     private int id;
-    private String titel;
+    private String title;
      private boolean isAvailable;
 
      public Library(int id, String titel, boolean isAvailable){
         this.id=id;
-        this.titel=titel;
+        this.title=titel;
         this.isAvailable=isAvailable;
      }
 
@@ -23,11 +23,11 @@ public class Library {
      }
 
      public String getTitel() {
-         return titel;
+         return title;
      }
 
      public void setTitel(String titel) {
-         this.titel = titel;
+         this.title = titel;
      }
 
      public boolean isAvailable() {

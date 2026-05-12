@@ -12,6 +12,9 @@ public class Book extends Library {
         this.pages=pages;
     }
 
+    public Book(){
+        super();
+    }
     public String getAuthor() {
         return author;
     }
