@@ -6,10 +6,38 @@ import java.util.ArrayList;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         String url_books= "http://10.151.168.5:3120/books";
 
+      static Scanner scan =new Scanner (System.in);
+boolean runnning = true;
+            while (runnning) {
+                   System.out.println("\n===== MENY =====");
+            System.out.println("1. Visa böcker");
+            System.out.println("2. Skapa bok");
+            System.out.println("3. Visa magasin");
+            System.out.println("4. Skapa magasin");
+            System.out.println("5. Avsluta");
+            System.out.print("Välj alternativ: ");
+            int val = scan.nextInt();
+            
+
+            switch(val){
+                case 1:
+                    visaBocker();
+                    break;
+            }
+            }
+
+
+        // Skapa meny för att:
+        // - Hämta och visa böcker
+        // - Skapa bok (& lägg in i arraylist)
+        // - Hämta och visa magasin
+        // - Skapa magasin (& lägg in i arraylist)
+        // - Avsluta
         HttpResponse<String> response = Unirest.get(url_books).asString();
 
         String json_data =response.getBody();
@@ -29,5 +57,32 @@ public class Main {
         }
 
         System.out.println("Arralist: "+books);
+
+
+        //magazine här
+        String url_magazines = "http://10.151.168.5:3120/magazines";
+
+        HttpResponse<String> responseMag = Unirest.get(url_magazines).asString();
+
+            String json_mag = responseMag.getBody();
+        System.out.println("JSON:");
+        System.out.println(json_mag);
+
+        Gson gson_1 = new Gson();
+
+        ArrayList<Magazine> magazines;
+            Type typ_magazines = new TypeToken<ArrayList<Magazine>>(){}.getType();
+
+        magazines = gson_1.fromJson(json_mag, typ_magazines);
+
+            System.out.println("magazines:");
+        for (int i = 0; i < magazines.size(); i++) {
+            System.out.println(magazines.get(i).getTitel());
+        }
+
+        System.out.println("ArrayList: " + magazines);
     }
+
+    visaBocker
+    
 }
