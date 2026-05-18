@@ -10,11 +10,13 @@ import java.util.Scanner;
 public class Main {
 
     static Scanner scan = new Scanner(System.in);
+    static ArrayList<Book> books = new ArrayList<>();
+    static ArrayList<Magazine> magazines = new ArrayList<>();
     public static void main(String[] args) {
         
 
-boolean runnning = true;
-            while (runnning) {
+boolean running = true;
+            while (running) {
                    System.out.println("\n===== MENY =====");
             System.out.println("1. Visa böcker");
             System.out.println("2. Skapa bok");
@@ -23,6 +25,7 @@ boolean runnning = true;
             System.out.println("5. Avsluta");
             System.out.print("Välj alternativ: ");
             int val = scan.nextInt();
+            scan.nextLine();
             
 
             switch(val){
@@ -41,6 +44,13 @@ boolean runnning = true;
                 case 4:
                     skapaMagasin();
                     break;
+
+                case 5:
+                    running = false;
+                    System.out.println("Programmet avslutas");
+                    break;
+
+            
             }
             }
 
@@ -66,7 +76,7 @@ String url_books= "http://10.151.168.5:3120/books";
 
         Gson gson = new Gson();
 
-        ArrayList<Book> books;
+
         Type typ_beskrivning = new TypeToken<ArrayList<Book>>(){}.getType();
 
         books = gson.fromJson(json_data, typ_beskrivning);
@@ -100,6 +110,7 @@ String url_books= "http://10.151.168.5:3120/books";
 
     System.out.println("Bok skapad");
     System.out.println(nyBook);
+    books.add(nyBook);
   }
 
 
@@ -117,7 +128,6 @@ String url_books= "http://10.151.168.5:3120/books";
 
         Gson gson_1 = new Gson();
 
-        ArrayList<Magazine> magazines;
             Type typ_magazines = new TypeToken<ArrayList<Magazine>>(){}.getType();
 
         magazines = gson_1.fromJson(json_mag, typ_magazines);
@@ -133,6 +143,26 @@ String url_books= "http://10.151.168.5:3120/books";
   public static void skapaMagasin(){
 
     System.out.println();
+
+    System.out.println("Titel: ");
+    String titel =scan.nextLine();
+
+
+    System.out.println("Kategori: ");
+    String category = scan.nextLine();
+
+    System.out.println("Issue number: ");
+    int issueNumber = scan.nextInt();
+
+    System.out.println("Publiceringsår: ");
+    int publishyear = scan.nextInt();
+    
+    Magazine nyMagasine = new Magazine(0, titel,true, issueNumber, category, publishyear);
+
+
+    System.out.println("Magasin skapad: ");
+    System.out.println(nyMagasine);
+    magazines.add(nyMagasine);
 
   }
 }
