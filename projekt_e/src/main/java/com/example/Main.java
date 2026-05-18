@@ -8,10 +8,11 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
-        String url_books= "http://10.151.168.5:3120/books";
 
-      static Scanner scan =new Scanner (System.in);
+    static Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) {
+        
+
 boolean runnning = true;
             while (runnning) {
                    System.out.println("\n===== MENY =====");
@@ -28,6 +29,10 @@ boolean runnning = true;
                 case 1:
                     visaBocker();
                     break;
+
+                case 2:
+                    skapaBok();
+                    break;
             }
             }
 
@@ -38,25 +43,9 @@ boolean runnning = true;
         // - Hämta och visa magasin
         // - Skapa magasin (& lägg in i arraylist)
         // - Avsluta
-        HttpResponse<String> response = Unirest.get(url_books).asString();
 
-        String json_data =response.getBody();
-        System.out.println("JSON:");
-        System.out.println(json_data);
-
-        Gson gson = new Gson();
-
-        ArrayList<Book> books;
-        Type typ_beskrivning = new TypeToken<ArrayList<Book>>(){}.getType();
-
-        books = gson.fromJson(json_data, typ_beskrivning);
-
-        System.out.println("böcker:");
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println(books.get(i).getTitel());
-        }
-
-        System.out.println("Arralist: "+books);
+        
+        
 
 
         //magazine här
@@ -83,6 +72,51 @@ boolean runnning = true;
         System.out.println("ArrayList: " + magazines);
     }
 
-    visaBocker
+    // visa bok
+  public static void visaBocker(){
+
+String url_books= "http://10.151.168.5:3120/books";
+        HttpResponse<String> response = Unirest.get(url_books).asString();
+
+        String json_data =response.getBody();
+        System.out.println("JSON:");
+        System.out.println(json_data);
+
+        Gson gson = new Gson();
+
+        ArrayList<Book> books;
+        Type typ_beskrivning = new TypeToken<ArrayList<Book>>(){}.getType();
+
+        books = gson.fromJson(json_data, typ_beskrivning);
+
+        System.out.println("böcker:");
+        for (int i = 0; i < books.size(); i++) {
+            System.out.println(books.get(i).getTitel());
+        }
+
+        System.out.println("Arralist: "+books);
+  }
+
+  public static void skapaBok(){
+
+    System.out.println("Titel: ");
+    String titel = scan.nextLine();
+
+    System.out.println("Författare: ");
+    String author = scan.nextLine();
+
+    System.out.println("Genre: ");
+    String genre = scan.nextLine();
+
+    System.out.println("sidor: ");
+    int pages = scan.nextInt();
+
+    scan.nextLine();
+
+    Book nyBook = new Book (0, titel, true , author, genre , pages);
+
+    System.out.println("Bok skapad");
+    System.out.println(nyBook);
+  }
     
 }
