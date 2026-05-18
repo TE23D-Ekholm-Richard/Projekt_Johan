@@ -33,6 +33,14 @@ boolean runnning = true;
                 case 2:
                     skapaBok();
                     break;
+
+                case 3:
+                     visaMagasin();
+                    break;
+
+                case 4:
+                    skapaMagasin();
+                    break;
             }
             }
 
@@ -44,32 +52,6 @@ boolean runnning = true;
         // - Skapa magasin (& lägg in i arraylist)
         // - Avsluta
 
-        
-        
-
-
-        //magazine här
-        String url_magazines = "http://10.151.168.5:3120/magazines";
-
-        HttpResponse<String> responseMag = Unirest.get(url_magazines).asString();
-
-            String json_mag = responseMag.getBody();
-        System.out.println("JSON:");
-        System.out.println(json_mag);
-
-        Gson gson_1 = new Gson();
-
-        ArrayList<Magazine> magazines;
-            Type typ_magazines = new TypeToken<ArrayList<Magazine>>(){}.getType();
-
-        magazines = gson_1.fromJson(json_mag, typ_magazines);
-
-            System.out.println("magazines:");
-        for (int i = 0; i < magazines.size(); i++) {
-            System.out.println(magazines.get(i).getTitel());
-        }
-
-        System.out.println("ArrayList: " + magazines);
     }
 
     // visa bok
@@ -97,6 +79,7 @@ String url_books= "http://10.151.168.5:3120/books";
         System.out.println("Arralist: "+books);
   }
 
+
   public static void skapaBok(){
 
     System.out.println("Titel: ");
@@ -118,5 +101,38 @@ String url_books= "http://10.151.168.5:3120/books";
     System.out.println("Bok skapad");
     System.out.println(nyBook);
   }
+
+
     
+  public static void visaMagasin(){
+    
+        //magazine här
+        String url_magazines = "http://10.151.168.5:3120/magazines";
+
+        HttpResponse<String> responseMag = Unirest.get(url_magazines).asString();
+
+            String json_mag = responseMag.getBody();
+        System.out.println("JSON:");
+        System.out.println(json_mag);
+
+        Gson gson_1 = new Gson();
+
+        ArrayList<Magazine> magazines;
+            Type typ_magazines = new TypeToken<ArrayList<Magazine>>(){}.getType();
+
+        magazines = gson_1.fromJson(json_mag, typ_magazines);
+
+            System.out.println("magazines:");
+        for (int i = 0; i < magazines.size(); i++) {
+            System.out.println(magazines.get(i).getTitel());
+        }
+
+        System.out.println("ArrayList: " + magazines);
+  }
+
+  public static void skapaMagasin(){
+
+    System.out.println();
+
+  }
 }
