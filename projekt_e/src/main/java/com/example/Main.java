@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import java.util.Scanner;
+
+//Richard Ekholm
 public class Main {
 
     static Scanner scan = new Scanner(System.in);
