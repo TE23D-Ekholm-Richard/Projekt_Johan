@@ -1,5 +1,5 @@
 package com.example;
-
+//barnklass som ärver från library
 public class Book extends Library {
     private String author;
     private String genre;

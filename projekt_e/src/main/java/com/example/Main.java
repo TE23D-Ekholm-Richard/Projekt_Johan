@@ -91,7 +91,7 @@ String url_books= "http://10.151.168.5:3120/books";
         System.out.println("Arralist: "+books);
   }
 
-
+//skapar bok
   public static void skapaBok(){
 
     System.out.println("Titel: ");
@@ -119,7 +119,7 @@ String url_books= "http://10.151.168.5:3120/books";
     
   public static void visaMagasin(){
     
-        //magazine här
+        // visar magazine här
         String url_magazines = "http://10.151.168.5:3120/magazines";
 
         HttpResponse<String> responseMag = Unirest.get(url_magazines).asString();
@@ -141,7 +141,7 @@ String url_books= "http://10.151.168.5:3120/books";
 
         System.out.println("ArrayList: " + magazines);
   }
-
+//skapa magasin
   public static void skapaMagasin(){
 
     System.out.println();

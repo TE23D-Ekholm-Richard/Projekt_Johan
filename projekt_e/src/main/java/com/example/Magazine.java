@@ -1,5 +1,5 @@
 package com.example;
-
+//Barnklass magazine som ärver från library
 public class Magazine extends Library {
     private int issueNumber;
     private String category;
